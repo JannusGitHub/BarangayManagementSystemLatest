@@ -3,13 +3,13 @@
 
     <!-- System title and logo -->
     {{-- <a href="{{ route('dashboard') }}" class="brand-link"> --}}
-    <a href="" class="brand-link text-center">
+    <a href="{{ route('dashboard') }}" class="brand-link text-center">
         {{-- <img src="{{ asset('public/images/pricon_logo2.png') }}" --}}
         <img src=""
             class="brand-image img-circle elevation-3"
             style="opacity: .8">
 
-        <span class="brand-text font-weight-light font-size"><a href="{{ route('dashboard') }}">BMS</a></span>
+        <span class="brand-text font-weight-light font-size text-center">BMS - BRGY IV</span>
     </a> <!-- System title and logo -->
 
     <!-- Sidebar -->
@@ -24,12 +24,12 @@
                     </a>
                 </li>
                 <li class="nav-header font-weight-bold">&nbsp;BARANGAY MANAGEMENT</li>
-                <!-- <li class="nav-item has-treeview">
+                <li class="nav-item has-treeview">
                     <a href="{{ route('resident_management') }}" class="nav-link">
                         <i class="nav-icon far fa-list-alt"></i>
                         <p>Barangay Resident</p></p>
                     </a>
-                </li> -->
+                </li>
                 <li class="nav-item has-treeview">
                     <a href="{{ route('blotter_management') }}" class="nav-link">
                         <i class="nav-icon far fa-list-alt"></i>
