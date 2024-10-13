@@ -36,6 +36,12 @@
 <!-- Bootstrap Datepicker -->
 <script src="{{ asset('/template/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 
+<!-- ChartJS -->
+<script src="{{ asset('/template/chartjs/js/chartjs.umd.min.js') }}"></script>
+
+<!-- Google Chart -->
+<script src="{{ asset('/template/googlechart/js/googlechart.js') }}"></script>
+
 <!-- Custom JS -->
 <script>
     // import Lightbox from 'bs5-lightbox';

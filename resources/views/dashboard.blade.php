@@ -22,8 +22,8 @@
         <section class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <h2 class="my-3">Dashboard</h2>
-
+                    <h2 class="my-3 fw-bold">Dashboard</h2>
+                    <h5 class="my-3">Overview</h5>
                     @if ($sessionId == 1)
                         <div class="col-sm-12 col-md-6 col-xl-4">
                             <div class="card card-dashboard">
@@ -112,6 +112,7 @@
                                 </div>
                             </div>
                         </div>
+
 
 
                         {{-- 
@@ -281,7 +282,25 @@
                             </div>
                         </div>
                     @endif
-                    
+                </div>
+
+                <div class="dropdown-divider"></div>
+                <div class="row mb-5">
+                    <h5 class="my-3">Chart Statistics</h5>
+                    <div class="col-sm-12 col-md-6 col-xl-4">
+                        <div class="card card-dashboard">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center flex-column">
+                                    <h5 class="card-title-dashboard">GAUGE CHART</h5>
+                                    <h1 class="mt-1 mb-3 mx-auto"><div id="divGaugeChart"></div></h1>
+                                    <div class="mb-0">
+                                        <span class="text-muted-dashboard">Performance</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
@@ -309,27 +328,36 @@
             }
             getDataForDashboard();
 
-            
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {'packages':['gauge']});
 
-            // dataTablesPendingUsers = $("#tablePendingUsers").DataTable({
-            //     "processing" : false,
-            //     "serverSide" : true,
-            //     "responsive": true,
-            //     // "order": [[ 0, "desc" ],[ 4, "desc" ]],
-            //     "language": {
-            //         "info": "Showing _START_ to _END_ of _TOTAL_ pending user records",
-            //         "lengthMenu": "Show _MENU_ pending user records",
-            //     },
-            //     "ajax" : {
-            //         url: "view_pending_users_for_dashboard",
-            //     },
-            //     "columns":[
-            //         { "data" : "status"},
-            //         { "data" : "fullname"},
-            //         { "data" : "email"},
-            //         { "data" : "username"},
-            //     ],
-            // });
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChart);
+
+            function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                    ['Label', 'Value'],
+                    ['Performance', 50] // Change this value to set the gauge
+                ]);
+
+                // options for the gauge chart
+                var options = {
+                    width: 800, height: 200,
+                    redFrom: 90, redTo: 100,
+                    yellowFrom:75, yellowTo: 90,
+                    greenFrom: 0, greenTo: 75,
+                    minorTicks: 5
+                };
+
+                // Instantiate and draw the gauge chart.
+                var chart = new google.visualization.Gauge(document.getElementById('divGaugeChart'));
+                chart.draw(data, options);
+
+                setInterval(function() {
+                    data.setValue(0, 1, Math.round(60 * Math.random()));
+                    chart.draw(data, options);
+                }, 1000);
+            }
         });
     </script>
 @endsection
