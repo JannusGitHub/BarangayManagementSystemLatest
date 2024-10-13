@@ -353,11 +353,28 @@
                 var chart = new google.visualization.Gauge(document.getElementById('divGaugeChart'));
                 chart.draw(data, options);
 
-                setInterval(function() {
-                    data.setValue(0, 1, Math.round(60 * Math.random()));
-                    chart.draw(data, options);
-                }, 1000);
+                setInterval(() => {
+                    $.ajax({
+                        type: "GET",
+                        url: "/api/get_water_level",
+                        // data: "data",
+                        dataType: "json",
+                        success: function (response) {
+                            if(response['data'].length > 0){
+                                data.setValue(0, 1, response['data'][0].water_level_value);
+                                chart.draw(data, options);
+                            }
+                        }
+                    });
+                }, 2000);
+
+                // setInterval(function() {
+                //     data.setValue(0, 1, Math.round(60 * Math.random()));
+                //     chart.draw(data, options);
+                // }, 1000);
             }
+
+            
         });
     </script>
 @endsection
