@@ -337,7 +337,7 @@
             function drawChart() {
                 var data = google.visualization.arrayToDataTable([
                     ['Label', 'Value'],
-                    ['Performance', 50] // Change this value to set the gauge
+                    ['Performance', 0] // Change this value to set the gauge
                 ]);
 
                 // options for the gauge chart
@@ -353,6 +353,7 @@
                 var chart = new google.visualization.Gauge(document.getElementById('divGaugeChart'));
                 chart.draw(data, options);
 
+                // Uncomment these code below if arduino water level sensor is working
                 setInterval(() => {
                     $.ajax({
                         type: "GET",
@@ -368,10 +369,11 @@
                     });
                 }, 2000);
 
+                // For bypass data
                 // setInterval(function() {
                 //     data.setValue(0, 1, Math.round(60 * Math.random()));
                 //     chart.draw(data, options);
-                // }, 1000);
+                // }, 5000);
             }
 
             

@@ -19,5 +19,5 @@ use App\Http\Controllers\WaterLevelController;
 //     return $request->user();
 // });
 
-Route::get('/add_water_level_value', [WaterLevelController::class, 'addWaterLevelValue'])->name('add_water_level_value');
+Route::post('/add_water_level_value', [WaterLevelController::class, 'addWaterLevelValue'])->name('add_water_level_value');
 Route::get('/get_water_level', [WaterLevelController::class, 'getWaterLevel'])->name('get_water_level');
